@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { act, create } from "react-test-renderer"
-import { wait, waitFor } from "./utils"
+import { create } from "react-test-renderer"
+import { waitFor } from "./utils"
 
 const Screen3 = () => {
 	const [count, setCount] = useState(0)
