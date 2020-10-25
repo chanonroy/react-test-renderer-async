@@ -15,6 +15,4 @@ export const waitFor = async (cb: any) => {
   await f()
 }
 
-export const wait = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 0))
-}
+export const wait = async () => new Promise((resolve) => setTimeout(resolve, 0))

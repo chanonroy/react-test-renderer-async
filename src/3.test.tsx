@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { create } from "react-test-renderer"
-import { waitFor } from "./utils"
+import { act, create } from "react-test-renderer"
+import { wait, waitFor } from "./utils"
 
 const Screen3 = () => {
 	const [count, setCount] = useState(0)
@@ -18,9 +18,11 @@ const Screen3 = () => {
 
 it("can deal with an async side effect that affects internal state (useEffect)", async () => {
 	const { root } = create(<Screen3 />)
-  expect(root.findByProps({ id: "count" }).props.children).toBe(0)
-
-	await waitFor(() => { // add this
-		expect(root.findByProps({ id: "count" }).props.children).toBe(1)
+	expect(root.findByProps({ id: "count" }).props.children).toBe(0)
+	
+	await act(async() => { // wrap an empty wait inside an act
+		await wait()
 	})
+
+	expect(root.findByProps({ id: "count" }).props.children).toBe(1)
 })
