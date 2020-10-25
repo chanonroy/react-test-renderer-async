@@ -5,14 +5,14 @@ const Screen1 = () => {
   const [count, setCount] = useState(0)
   const increment = () => setCount(count + 1)
   return (
-    <>
+    <div>
       <div id="count">{count}</div>
       <button id="button" onClick={() => increment()}>Add</button>
-    </>
+    </div>
   )
 }
 
-it("1. Use an act to update synchronous state", () => {
+it("can use an act to update synchronous state", () => {
   const { root } = create(<Screen1 />)
   expect(root.findByProps({ id: "count" }).props.children).toBe(0)
 
